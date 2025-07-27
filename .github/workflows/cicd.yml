@@ -15,12 +15,9 @@ jobs:
 
       - name: Install tfsec manually
         run: |
-          # Download the latest release binary for linux
-          curl -L -o tfsec.tar.gz https://github.com/aquasecurity/tfsec/releases/download/v1.28.5/tfsec-linux-amd64.tar.gz
-          # Unpack the binary
-          tar -xzf tfsec.tar.gz
-          # Make it executable and move it to a location in the system's PATH
-          sudo install tfsec /usr/local/bin
+          curl -L -o tfsec https://github.com/aquasecurity/tfsec/releases/download/v1.28.5/tfsec-linux-amd64
+          chmod +x tfsec
+          sudo mv tfsec /usr/local/bin/tfsec
 
       - name: Run tfsec scan
         run: tfsec ./terraform
