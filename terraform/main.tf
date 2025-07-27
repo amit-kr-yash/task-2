@@ -1,8 +1,3 @@
-resource "aws_s3_bucket" "insecure_bucket" {
-  bucket = "my-insecure-devsecops-bucket-12345"
-  acl    = "public-read" # This will be flagged by tfsec
-}
-
 # A more secure version for comparison
 resource "aws_s3_bucket" "secure_bucket" {
   bucket = "my-secure-devsecops-bucket-12345"
