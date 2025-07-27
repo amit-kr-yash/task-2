@@ -8,7 +8,6 @@ resource "aws_s3_bucket" "secure_bucket" {
   bucket = "my-secure-devsecops-bucket-12345"
   acl    = "private"
 
-  # Block all public access
   public_access_block {
     block_public_acls       = true
     block_public_policy     = true
