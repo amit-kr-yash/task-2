@@ -3,6 +3,9 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
+# ADD THIS LINE: Upgrade core packaging tools first
+RUN python -m pip install --upgrade pip setuptools
+
 # Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
