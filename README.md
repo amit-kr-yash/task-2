@@ -1,5 +1,23 @@
 # 🚀 DevSecOps Pipeline using GitHub Actions, Terraform, tfsec, Trivy, Sealed Secrets, and Kind Kubernetes
 
+
+## File Structure 
+
+```
+.
+├── .github/
+│   └── workflows/
+│       └── cicd.yml
+├── terraform/
+│   └── main.tf
+├── app/
+│   ├── Dockerfile
+│   └── main.py
+└── k8s/
+    ├── deployment.yaml
+    └── sealed-secret.yaml
+```
+
 ## 📑 Table of Contents
 
 1. [Project Overview](#project-overview)
