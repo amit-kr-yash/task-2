@@ -13,8 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install tfsec
-        uses: aquasecurity/tfsec-action@v1.0.3
+      - name: Install tfsec manually
+        run: |
+          # Download the latest release binary for linux
+          curl -L -o tfsec.tar.gz https://github.com/aquasecurity/tfsec/releases/download/v1.28.5/tfsec-linux-amd64.tar.gz
+          # Unpack the binary
+          tar -xzf tfsec.tar.gz
+          # Make it executable and move it to a location in the system's PATH
+          sudo install tfsec /usr/local/bin
 
       - name: Run tfsec scan
         run: tfsec ./terraform
