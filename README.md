@@ -7,15 +7,15 @@
 .
 ├── .github/
 │   └── workflows/
-│       └── cicd.yml
+│       └── cicd.yml        # Defines the CI/CD pipeline automation using GitHub Actions.
 ├── terraform/
-│   └── main.tf
+│   └── main.tf             # Infrastructure as Code (IaC) for cloud resources (e.g., S3 buckets).
 ├── app/
-│   ├── Dockerfile
-│   └── main.py
+│   ├── Dockerfile          # Instructions to build the container image for the Python application.
+│   └── main.py             # The simple Python Flask application code.
 └── k8s/
-    ├── deployment.yaml
-    └── sealed-secret.yaml
+    ├── deployment.yaml     # Kubernetes manifest to deploy the application.
+    └── sealed-secret.yaml  # The encrypted, version-controlled Kubernetes secret.
 ```
 
 ## 📑 Table of Contents
