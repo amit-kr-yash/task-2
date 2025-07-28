@@ -33,20 +33,6 @@ jobs:
           push: false # We are not pushing, just building for the scan
           tags: my-secure-app:latest
           load: true # Load the image into the local Docker daemon
-      
-      - name: Log in to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push Docker image to Docker Hub
-        uses: docker/build-push-action@v5
-        with:
-          context: ./app
-          file: ./app/Dockerfile
-          push: true # This tells the action to push
-          tags: yourdockerhubusername/my-secure-app:latest # Use your Docker Hub username here
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.22.0
