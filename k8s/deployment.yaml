@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
       - name: my-secure-app
-        image: my-secure-app:latest # The image name from the CI pipeline
+        image: my-secure-app:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
         env:
         - name: API_KEY
           valueFrom:
             secretKeyRef:
-              # This name must match the name of your Secret
               name: my-api-secret
               key: API_KEY
