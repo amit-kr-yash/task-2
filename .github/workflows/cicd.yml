@@ -30,38 +30,24 @@ jobs:
         with:
           context: ./app
           file: ./app/Dockerfile
-          push: false
+          push: false # We are not pushing, just building for the scan
           tags: my-secure-app:latest
-          load: true
+          load: true # Load the image into the local Docker daemon
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.22.0
         with:
           image-ref: 'my-secure-app:latest'
           format: 'table'
-          exit-code: '1'
+          exit-code: '1' # Fail the build if vulnerabilities are found
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
-      - name: Log in to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Push Docker image to Docker Hub
-        uses: docker/build-push-action@v5
-        with:
-          context: ./app
-          file: ./app/Dockerfile
-          push: true
-          tags: ameet56/my-secure-app:latest
-
   deploy:
     name: Deploy to Kubernetes
     runs-on: ubuntu-latest
-    needs: security-scans
+    needs: security-scans # This job runs only if security-scans succeeds
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
