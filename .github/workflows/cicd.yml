@@ -66,12 +66,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Apply Kubernetes manifests
+      - name: Simulate applying Kubernetes manifests
         run: |
-          echo "Applying SealedSecret..."
-          kubectl apply -f k8s/sealed-secret.yaml
-          echo "Applying Deployment..."
-          kubectl apply -f k8s/deployment.yaml
+          echo "Simulating deployment..."
+          echo "Applying SealedSecret:"
+          cat k8s/sealed-secret.yaml
+          echo -e "\nApplying Deployment:"
+          cat k8s/deployment.yaml
 
   apply-terraform:
     name: Apply Terraform
